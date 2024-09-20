@@ -9,12 +9,14 @@ lint:
   allow_failure: false
   stage: lint
   script:
+    - helm dependency update grr
     - helm lint grr
 
 package:
   stage: package
   script:
     - CHART_VERION=$(helm show chart grr|yq -r '.version')
+    - helm dependency update grr
     - helm package grr
     - echo "CHART_VERION=$CHART_VERION" >> package.env
   artifacts:
