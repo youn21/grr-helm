@@ -1,0 +1,16 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+    - id: trailing-whitespace
+    - id: check-added-large-files
+    - id: end-of-file-fixer
+      exclude: README.md
+# - repo: https://github.com/bitnami/readme-generator-for-helm
+#   rev: "2.6.1"
+#   hooks:
+#     - id: helm-readme-generator
+#       pass_filenames: false
+#       always_run: true
+#       # default args are [--readme=chart/README.md, --values=chart/values.yaml]
+#       args: [--readme=README.md, --values=grr/values.yaml]

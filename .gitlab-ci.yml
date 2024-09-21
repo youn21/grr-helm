@@ -1,0 +1,32 @@
+image: dtzar/helm-kubectl:3.16.1
+stages:
+  - lint
+  - package
+  - upload
+
+lint:
+  when: manual
+  allow_failure: false
+  stage: lint
+  script:
+    - helm dependency update grr
+    - helm lint grr
+
+package:
+  stage: package
+  script:
+    - CHART_VERION=$(helm show chart grr|yq -r '.version')
+    - helm dependency update grr
+    - helm package grr
+    - echo "CHART_VERION=$CHART_VERION" >> package.env
+  artifacts:
+    reports:
+      dotenv: package.env
+    paths: [grr-$CHART_VERION.tgz]
+
+upload:
+  dependencies: [package]
+  image: curlimages/curl:latest
+  stage: upload
+  script:
+    - 'curl --fail-with-body --request POST --user gitlab-ci-token:$CI_JOB_TOKEN --form "chart=@grr-$CHART_VERION.tgz" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"'
