@@ -15,18 +15,18 @@ lint:
 package:
   stage: package
   script:
-    - CHART_VERION=$(helm show chart grr|yq -r '.version')
+    - CHART_VERSION=$(helm show chart grr|yq -r '.version')
     - helm dependency update grr
     - helm package grr
-    - echo "CHART_VERION=$CHART_VERION" >> package.env
+    - echo "CHART_VERSION=$CHART_VERION" >> package.env
   artifacts:
     reports:
       dotenv: package.env
-    paths: [grr-$CHART_VERION.tgz]
+    paths: [grr-*.tgz]
 
 upload:
   dependencies: [package]
   image: curlimages/curl:latest
   stage: upload
   script:
-    - 'curl --fail-with-body --request POST --user gitlab-ci-token:$CI_JOB_TOKEN --form "chart=@grr-$CHART_VERION.tgz" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"'
+    - 'curl --fail-with-body --request POST --user gitlab-ci-token:$CI_JOB_TOKEN --form "chart=@grr-$CHART_VERSION.tgz" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"'
