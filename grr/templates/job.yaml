@@ -15,8 +15,8 @@ spec:
       labels:
         {{- include "grr.labels" . | nindent 8 }}
     spec:
+      restartPolicy: Never
       containers:
-        restartPolicy: Never
         - name: migrate
           image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
           command: ["/var/www/docker/nginx-unit/migrations.sh"]
