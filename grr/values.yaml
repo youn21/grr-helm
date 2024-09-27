@@ -55,7 +55,7 @@ livenessProbe:
 readinessProbe:
 ## @skip readinessProbe.httpGet
   httpGet:
-    path: /
+    path: /healthz
     port: http
 ## @param autoscaling [object] Autoscaling
 ## @skip autoscaling Autoscaling
