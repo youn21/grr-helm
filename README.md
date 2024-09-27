@@ -4,12 +4,14 @@
 
 ### MariaDB configuration
 
-| Name                        | Description           | Value |
-| --------------------------- | --------------------- | ----- |
-| `mariadb.auth.database`     | MariaDB database      | `""`  |
-| `mariadb.auth.rootPassword` | MariaDB root password | `""`  |
-| `mariadb.auth.username`     | MariaDB username      | `""`  |
-| `mariadb.auth.password`     | MariaDB password      | `""`  |
+| Name                        | Description             | Value  |
+| --------------------------- | ----------------------- | ------ |
+| `mariadb.enabled`           | Enable MariaDB subchart | `true` |
+| `mariadb.externalHost`      | MariaDB external host   | `""`   |
+| `mariadb.auth.database`     | MariaDB database        | `""`   |
+| `mariadb.auth.rootPassword` | MariaDB root password   | `""`   |
+| `mariadb.auth.username`     | MariaDB username        | `""`   |
+| `mariadb.auth.password`     | MariaDB password        | `""`   |
 
 ### GRR image
 

@@ -1,9 +1,13 @@
 ## @section MariaDB configuration
+## @param mariadb.enabled [default: true] Enable MariaDB subchart
+## @param mariadb.externalHost [string] MariaDB external host
 ## @param mariadb.auth.database [string] MariaDB database
 ## @param mariadb.auth.rootPassword [string] MariaDB root password
 ## @param mariadb.auth.username [string] MariaDB username
 ## @param mariadb.auth.password [string] MariaDB password
 mariadb:
+  enabled: true
+  externalHost: mariadb.local
   auth:
     database: grr
     rootPassword: grr_root_password
