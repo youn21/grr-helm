@@ -33,4 +33,4 @@ spec:
               value: {{ $mariadbHost }}
           envFrom:
             - secretRef:
-              name: {{ $secret }}
+                name: {{ $secret }}

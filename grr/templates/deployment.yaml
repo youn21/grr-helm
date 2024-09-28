@@ -46,7 +46,7 @@ spec:
               value: {{ $mariadbHost }}
           envFrom:
             - secretRef:
-              name: {{ $secret }}
+                name: {{ $secret }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
