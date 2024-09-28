@@ -33,6 +33,13 @@
 | `readinessProbe` | Readiness Probe | `{}`  |
 | `autoscaling`    | Autoscaling     | `{}`  |
 
+### GRR MariaDB secret
+
+| Name                    | Description           | Value  |
+| ----------------------- | --------------------- | ------ |
+| `secret.create`         | Create secret         | `true` |
+| `secret.existingSecret` | Existing secrret name | `""`   |
+
 ### GRR service
 
 | Name           | Description  | Value       |

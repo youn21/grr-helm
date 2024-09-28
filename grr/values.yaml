@@ -66,6 +66,13 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+## @section GRR MariaDB secret
+## @param secret.create [default: true] Create secret
+## @param secret.existingSecret [string] Existing secrret name
+secret:
+  create: true
+  existingSecret: ""
+
 ## @section GRR service
 ## @param service.type [default: ClusterIP] Service type
 ## @param service.port [default: 8080] Service port

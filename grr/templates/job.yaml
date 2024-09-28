@@ -2,6 +2,10 @@
 {{- if .Values.mariadb.enabled -}}
 {{- $mariadbHost = include "mariadb.primary.fullname" .Subcharts.mariadb  -}}
 {{- end -}}
+{{- $secret := .Values.secret.existingSecret -}}
+{{- if .Values.secret.create -}}
+{{- $secret = include "grr.fullname" . }}
+{{- end -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -25,11 +29,8 @@ spec:
           image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
           command: ["/var/www/docker/nginx-unit/migrations.sh"]
           env:
-            - name: DB_NAME
-              value: {{ .Values.mariadb.auth.database }}
-            - name: DB_USER
-              value: {{ .Values.mariadb.auth.username }}
-            - name: DB_PASSWORD
-              value: {{ .Values.mariadb.auth.password }}
             - name: DB_HOST
               value: {{ $mariadbHost }}
+          envFrom:
+            - secretRef:
+              name: {{ $secret }}

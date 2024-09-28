@@ -2,6 +2,10 @@
 {{- if .Values.mariadb.enabled -}}
 {{- $mariadbHost = include "mariadb.primary.fullname" .Subcharts.mariadb  -}}
 {{- end -}}
+{{- $secret := .Values.secret.existingSecret -}}
+{{- if .Values.secret.create -}}
+{{- $secret = include "grr.fullname" . }}
+{{- end -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -38,14 +42,11 @@ spec:
               name: metrics
               protocol: TCP
           env:
-            - name: DB_NAME
-              value: {{ .Values.mariadb.auth.database }}
-            - name: DB_USER
-              value: {{ .Values.mariadb.auth.username }}
-            - name: DB_PASSWORD
-              value: {{ .Values.mariadb.auth.password }}
             - name: DB_HOST
               value: {{ $mariadbHost }}
+          envFrom:
+            - secretRef:
+              name: {{ $secret }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
