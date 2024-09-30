@@ -2,8 +2,8 @@
 {{- if .Values.mariadb.enabled -}}
 {{- $mariadbHost = include "mariadb.primary.fullname" .Subcharts.mariadb  -}}
 {{- end -}}
-{{- $secret := .Values.secret.existingSecret -}}
-{{- if .Values.secret.create -}}
+{{- $secret := .Values.mariadb.auth.existingSecret -}}
+{{- if .Values.mariadb.auth.createSecret -}}
 {{- $secret = include "grr.fullname" . }}
 {{- end -}}
 apiVersion: batch/v1

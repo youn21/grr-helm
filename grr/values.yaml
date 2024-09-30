@@ -5,6 +5,8 @@
 ## @param mariadb.auth.rootPassword [string] MariaDB root password
 ## @param mariadb.auth.username [string] MariaDB username
 ## @param mariadb.auth.password [string] MariaDB password
+## @param mariadb.auth.createSecret [default: true] Create secret
+## @param mariadb.auth.existingSecret [string] Existing secrret name
 mariadb:
   enabled: true
   externalHost: mariadb.local
@@ -13,6 +15,9 @@ mariadb:
     rootPassword: grr_root_password
     username: grr_user
     password: grr_password
+    createSecret: true
+    existingSecret: ""
+
 
 ## @section GRR image
 ## @param image.repository [default: registry.plmlab.math.cnrs.fr/anf2024/grr] GRR image name
@@ -65,13 +70,6 @@ autoscaling:
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
-
-## @section GRR MariaDB secret
-## @param secret.create [default: true] Create secret
-## @param secret.existingSecret [string] Existing secrret name
-secret:
-  create: true
-  existingSecret: ""
 
 ## @section GRR service
 ## @param service.type [default: ClusterIP] Service type

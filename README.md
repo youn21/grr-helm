@@ -4,14 +4,16 @@
 
 ### MariaDB configuration
 
-| Name                        | Description             | Value  |
-| --------------------------- | ----------------------- | ------ |
-| `mariadb.enabled`           | Enable MariaDB subchart | `true` |
-| `mariadb.externalHost`      | MariaDB external host   | `""`   |
-| `mariadb.auth.database`     | MariaDB database        | `""`   |
-| `mariadb.auth.rootPassword` | MariaDB root password   | `""`   |
-| `mariadb.auth.username`     | MariaDB username        | `""`   |
-| `mariadb.auth.password`     | MariaDB password        | `""`   |
+| Name                          | Description             | Value  |
+| ----------------------------- | ----------------------- | ------ |
+| `mariadb.enabled`             | Enable MariaDB subchart | `true` |
+| `mariadb.externalHost`        | MariaDB external host   | `""`   |
+| `mariadb.auth.database`       | MariaDB database        | `""`   |
+| `mariadb.auth.rootPassword`   | MariaDB root password   | `""`   |
+| `mariadb.auth.username`       | MariaDB username        | `""`   |
+| `mariadb.auth.password`       | MariaDB password        | `""`   |
+| `mariadb.auth.createSecret`   | Create secret           | `true` |
+| `mariadb.auth.existingSecret` | Existing secrret name   | `""`   |
 
 ### GRR image
 
@@ -32,13 +34,6 @@
 | `livenessProbe`  | Liveness Probe  | `{}`  |
 | `readinessProbe` | Readiness Probe | `{}`  |
 | `autoscaling`    | Autoscaling     | `{}`  |
-
-### GRR MariaDB secret
-
-| Name                    | Description           | Value  |
-| ----------------------- | --------------------- | ------ |
-| `secret.create`         | Create secret         | `true` |
-| `secret.existingSecret` | Existing secrret name | `""`   |
 
 ### GRR service
 
