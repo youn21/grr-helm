@@ -12,7 +12,6 @@
 | `mariadb.auth.rootPassword`   | MariaDB root password   | `""`   |
 | `mariadb.auth.username`       | MariaDB username        | `""`   |
 | `mariadb.auth.password`       | MariaDB password        | `""`   |
-| `mariadb.auth.createSecret`   | Create secret           | `true` |
 | `mariadb.auth.existingSecret` | Existing secret name    | `""`   |
 
 ### GRR image

@@ -5,7 +5,6 @@
 ## @param mariadb.auth.rootPassword [string] MariaDB root password
 ## @param mariadb.auth.username [string] MariaDB username
 ## @param mariadb.auth.password [string] MariaDB password
-## @param mariadb.auth.createSecret [default: true] Create secret
 ## @param mariadb.auth.existingSecret [string] Existing secret name
 mariadb:
   enabled: true
