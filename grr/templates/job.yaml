@@ -2,9 +2,9 @@
 {{- if .Values.mariadb.enabled -}}
 {{- $mariadbHost = include "mariadb.primary.fullname" .Subcharts.mariadb  -}}
 {{- end -}}
-{{- $secret := .Values.mariadb.auth.existingSecret -}}
-{{- if .Values.mariadb.auth.createSecret -}}
-{{- $secret = include "grr.fullname" . }}
+{{- $secret := include "grr.fullname" . -}}
+{{- if .Values.mariadb.auth.existingSecret -}}
+{{- $secret = .Values.mariadb.auth.existingSecret -}}
 {{- end -}}
 apiVersion: batch/v1
 kind: Job
@@ -33,4 +33,4 @@ spec:
               value: {{ $mariadbHost }}
           envFrom:
             - secretRef:
-                name: {{ $secret }}
+                {{ $secret }}
